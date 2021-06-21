@@ -5,8 +5,9 @@ import {
 import '../styles/global.scss';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Header from '../components/Header';
+import { Provider } from 'next-auth/client';
 
-function OpenClassroomApp({ Component, pageProps }) {
+function OpenClassroomApp({ Component, pageProps }: any) {
   // Create dark mode Material UI theme.
   const theme = createMuiTheme({
     palette: {
@@ -15,13 +16,14 @@ function OpenClassroomApp({ Component, pageProps }) {
   });
 
   return (
-    <ThemeProvider theme={theme}>
-      {/* Required CSS for Material UI */}
-      <CssBaseline />
-      <Header />
-      {/* The app and it's props */}
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <Provider session={pageProps.session}>
+      <ThemeProvider theme={theme}>
+        {/* Required CSS for Material UI */}
+        <CssBaseline />
+        <Header />
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </Provider>
   );
 }
 

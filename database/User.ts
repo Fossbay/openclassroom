@@ -1,46 +1,16 @@
-import db from './db';
+import { prop } from "@typegoose/typegoose";
+import UserType from "../types/UserTypes";
 
-interface IUser {
-  username: string;
-  password: string;
+export default class User {
+  @prop({ required: true, type: String })
+  public name: string;
+
+  @prop({ required: false, type: String })
+  public preferredName?: string;
+
+  @prop({ required: true, type: String })
+  public email: string;
+
+  @prop({ required: true, type: Number })
+  public type: UserType;
 }
-
-class User {
-  private username: string;
-
-  private password: string;
-
-  public user: () => IUser = () => ({
-    username: this.username,
-    password: this.password,
-  });
-
-  constructor(username: string, password?: string) {
-    this.username = username;
-    if (typeof password === 'string') {
-      this.password = password;
-    } else {
-      // eslint-disable-next-line
-      User.get(username).then(v => this.password = v.password);
-    }
-  }
-
-  public static async get(username: string) {
-    const doc = await db.findOne<IUser>({ type: 'User', username });
-    return {
-      username: doc.username,
-      password: doc.password,
-    };
-  }
-
-  // public static async changePassword(username: string, password: string) {
-  //   db.update({ type: this.constructor.name });
-  // }
-
-  private write() {
-    db.insert({ type: this.constructor.name, username: this.username, password: this.password })
-      .then((doc) => { this.username = doc.username; this.password = doc.password; });
-  }
-}
-
-export default User;
