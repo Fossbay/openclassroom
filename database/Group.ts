@@ -6,6 +6,9 @@ export default class Group {
   @prop({ ref: () => User, type: () => [User], required: true }, WhatIsIt.ARRAY)
   public users: Ref<User>[];
 
+  @prop({ ref: () => User, type: () => [User], required: true }, WhatIsIt.ARRAY)
+  public teachers: Ref<User>[];
+
   @prop({ type: String, required: true })
   public name: string;
 }

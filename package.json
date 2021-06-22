@@ -13,6 +13,7 @@
     "@material-ui/lab": "^4.0.0-alpha.58",
     "@typegoose/typegoose": "^7.6.1",
     "@types/mongoose": "5.10.x",
+    "bcryptjs": "^2.4.3",
     "mongoose": "5.10.18",
     "nanoid": "^3.1.23",
     "nedb-promises": "^4.1.1",
@@ -24,6 +25,7 @@
     "sass-loader": "^11.0.1"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/node": "^14.14.32",
     "@types/react": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
